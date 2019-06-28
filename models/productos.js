@@ -26,7 +26,6 @@ module.exports = {
             conexion.query(`select id, nombre, precio from productos where id = ?`,
                 [id],
                 (err, resultados) => {
-                    console.log({resultados});
                     if (err) reject(err);
                     else resolve(resultados[0]);
                 });

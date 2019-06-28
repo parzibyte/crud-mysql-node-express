@@ -52,7 +52,6 @@ router.get('/editar/:id', function (req, res, next) {
         .obtenerPorId(req.params.id)
         .then(producto => {
             if (producto) {
-                console.log({ producto });
                 res.render("productos/editar", {
                     producto: producto,
                 });

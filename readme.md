@@ -2,6 +2,10 @@
 # MySQL y Node - Conexión
 
 By [Parzibyte](https://parzibyte.me/blog)
+
+Tutorial en: https://parzibyte.me/blog/2019/06/27/conexion-node-js-mysql-express/
+
+
 Generada con [express-generator](https://parzibyte.me/blog/2019/06/21/generar-app-express-node-express-generator/)
 
 ## Instalar dependencias
