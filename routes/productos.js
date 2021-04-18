@@ -23,13 +23,13 @@ router.post('/insertar', function (req, res, next) {
     // Obtener el nombre y precio. Es lo mismo que
     // const nombre = req.body.nombre;
     // const precio = req.body.precio;
-    const { nombre, precio } = req.body;
-    if (!nombre || !precio) {
-        return res.status(500).send("No hay nombre o precio");
+    const { nombre, precio, fecuc } = req.body;
+    if (!nombre || !precio || !fecuc) {
+        return res.status(500).send("No hay nombre, fecuc o precio");
     }
     // Si todo va bien, seguimos
     productosModel
-        .insertar(nombre, precio)
+        .insertar(nombre, precio, fecuc)
         .then(idProductoInsertado => {
             res.redirect("/productos");
         })
@@ -67,13 +67,13 @@ router.post('/actualizar/', function (req, res, next) {
     // Obtener el nombre y precio. Es lo mismo que
     // const nombre = req.body.nombre;
     // const precio = req.body.precio;
-    const { id, nombre, precio } = req.body;
-    if (!nombre || !precio || !id) {
+    const { id, nombre, precio, fecuc } = req.body;
+    if (!nombre || !precio || !id || !fecuc) {
         return res.status(500).send("No hay suficientes datos");
     }
     // Si todo va bien, seguimos
     productosModel
-        .actualizar(id, nombre, precio)
+        .actualizar(id, nombre, precio, fecuc)
         .then(() => {
             res.redirect("/productos");
         })
