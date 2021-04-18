@@ -14,7 +14,7 @@ module.exports = {
     },
     obtener() {
         return new Promise((resolve, reject) => {
-            conexion.query(`select id, nombre, precio, fecuc from productos`,
+            conexion.query(`select id, nombre, precio, date_format(fecuc, "%d-%m-%Y") as fecuc from productos`,
                 (err, resultados) => {
                     if (err) reject(err);
                     else resolve(resultados);
