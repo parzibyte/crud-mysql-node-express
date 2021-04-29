@@ -6,3 +6,9 @@ create table productos(
     fecuc varchar(10),
     primary key(id)
 );
+create table usuarios(
+    id integer not null auto_increment,
+    correo varchar(255) NOT NULL UNIQUE,
+    palabra_secreta varchar(255) NOT NULL,
+    primary key(id)
+);

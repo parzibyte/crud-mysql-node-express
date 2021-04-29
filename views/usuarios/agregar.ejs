@@ -1,0 +1,37 @@
+<%- include("../header"); %>
+    <div class="col-12">
+        <h1>Agregar usuario</h1>
+        <form id="form" method="post" action="/usuarios/insertar">
+            <div class="form-group">
+                <label for="correo">Correo</label>
+                <input required id="correo" placeholder="Correo" class="form-control" type="email" name="correo">
+            </div>
+            <div class="form-group">
+                <label for="palabraSecreta">Contraseña</label>
+                <input required id="palabraSecreta" placeholder="Contraseña" class="form-control" type="password"
+                    name="palabraSecreta">
+            </div>
+            <div class="form-group">
+                <label for="palabraSecretaConfirmar">Confirmar contraseña</label>
+                <input required id="palabraSecretaConfirmar" placeholder="Confirmar contraseña" class="form-control"
+                    type="password" name="palabraSecretaConfirmar">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success">Guardar</button>
+                &nbsp;<a href="/usuarios" class="btn btn-primary">Volver</a>
+            </div>
+        </form>
+        <script>
+            const $form = document.querySelector("#form"),
+                $palabraSecreta = document.querySelector("#palabraSecreta"),
+                $palabraSecretaConfirmar = document.querySelector("#palabraSecretaConfirmar");
+            $form.onsubmit = evento => {
+                evento.preventDefault();
+                if ($palabraSecreta.value !== $palabraSecretaConfirmar.value) {
+                    return alert("Las contraseñas no coinciden");
+                }
+                $form.submit();
+            };
+        </script>
+    </div>
+    <%- include("../footer"); %>
