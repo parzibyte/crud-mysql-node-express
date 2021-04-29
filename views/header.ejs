@@ -27,15 +27,20 @@
         </button>
         <div class="collapse navbar-collapse" id="menu">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/productos">Ver</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/productos/agregar">Agregar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/usuarios">Usuarios</a>
-                </li>
+                <% if (correoUsuario) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/productos">Ver</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/productos/agregar">Agregar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/usuarios/logout">Salir (<%= correoUsuario %>)</a>
+                    </li>
+                    <% } %>
             </ul>
         </div>
     </nav>

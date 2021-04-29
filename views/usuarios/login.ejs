@@ -1,0 +1,19 @@
+<%- include("../header"); %>
+    <div class="col-12">
+        <h1>Bienvenido</h1>
+        <form id="form" method="post" action="/usuarios/login">
+            <div class="form-group">
+                <label for="correo">Correo</label>
+                <input required id="correo" placeholder="Correo" class="form-control" type="email" name="correo">
+            </div>
+            <div class="form-group">
+                <label for="palabraSecreta">Contraseña</label>
+                <input required id="palabraSecreta" placeholder="Contraseña" class="form-control" type="password"
+                    name="palabraSecreta">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success">Entrar</button>
+            </div>
+        </form>
+    </div>
+    <%- include("../footer"); %>
