@@ -14,6 +14,10 @@ Ejecuta:
 
 `npm install`
 
+También instala el conversor a PDF:
+
+`npm install -g html-pdf`
+
 ## Base de datos
 Instala MySQL, crea tu base de datos y agrega la tabla ubicada en *esquema.sql*
   

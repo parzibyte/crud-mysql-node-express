@@ -8,6 +8,7 @@
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Fecha última compra</th>
+                    <th>PDF</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -23,6 +24,11 @@
                         </td>
                         <td>
                             <%= producto.fecuc %>
+                        </td>
+                        <td>
+                            <a href="/productos/pdf/<%= producto.id %>" class="btn btn-warning">
+                                PDF
+                            </a>
                         </td>
                         <td>
                             <a href="/productos/editar/<%= producto.id %>" class="btn btn-warning">

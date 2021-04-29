@@ -23,7 +23,7 @@ module.exports = {
     },
     obtenerPorId(id) {
         return new Promise((resolve, reject) => {
-            conexion.query(`select id, nombre, precio, fecuc from productos where id = ?`,
+            conexion.query(`select id, nombre, precio, date_format(fecuc, "%d-%m-%Y") as fecuc from productos where id = ?`,
                 [id],
                 (err, resultados) => {
                     if (err) reject(err);
