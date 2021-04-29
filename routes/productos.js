@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pdf = require("html-pdf");
 const fs = require("fs");
+const path = require("path");
+const QRCode = require('qrcode')
 
 const productosModel = require("../models/productos");
 
@@ -87,11 +89,20 @@ router.get('/pdf/:id', function (req, res, next) {
     productosModel
         .obtenerPorId(req.params.id)
         .then(producto => {
-            if (producto) {
+            if (!producto) {
+
+                return res.status(500).send("No existe producto con ese id");
+            }
+            const urlPdf = req.protocol + '://' + req.get('host') + req.originalUrl;
+            QRCode.toDataURL(urlPdf, function (err, qrBase64) {
+                if (err) {
+                    return res.end("Error creando QR");
+                }
                 let contenidoHtml = fs.readFileSync(require.resolve('../views/productos/pdf.html'), 'utf8')
-                contenidoHtml=contenidoHtml.replace("{{nombreProducto}}", producto.nombre);
-                contenidoHtml=contenidoHtml.replace("{{precioProducto}}", producto.precio);
-                contenidoHtml=contenidoHtml.replace("{{fechaCompraProducto}}", producto.fecuc);
+                contenidoHtml = contenidoHtml.replace("{{nombreProducto}}", producto.nombre);
+                contenidoHtml = contenidoHtml.replace("{{precioProducto}}", producto.precio);
+                contenidoHtml = contenidoHtml.replace("{{fechaCompraProducto}}", producto.fecuc);
+                contenidoHtml = contenidoHtml.replace("{{imagen}}", qrBase64);
                 pdf.create(contenidoHtml).toStream((err, stream) => {
                     if (err) {
                         return res.end("Error creando PDF: " + err);
@@ -99,9 +110,7 @@ router.get('/pdf/:id', function (req, res, next) {
                     res.setHeader("Content-Type", "application/pdf");
                     stream.pipe(res);
                 })
-            } else {
-                return res.status(500).send("No existe producto con ese id");
-            }
+            });
         })
         .catch(err => {
             return res.status(500).send("Error obteniendo producto: " + err);
