@@ -39,8 +39,8 @@ app.use(function (req, res, next) {
 });
 app.use((req, res, next) => {
   const url = req.url;
-  // Servir lo estático
-  if (url.startsWith("/stylesheets") && url.endsWith(".css")) {
+  // Servir lo estático y el PDF
+  if ((url.startsWith("/stylesheets") && url.endsWith(".css")) || url.startsWith("/productos/pdf")) {
     next();
     return;
   }
